@@ -1,18 +1,19 @@
-import uuid from 'uuid';
+import uuidV4 from 'uuid/v4';
 
 export function addTodo(text) {
+    const date = new Date();
     return {
         type: 'ADD_TODO',
         payload: {
-            id: uuid.v4(),
+            id: uuidV4(),
             isDone: false,
             text: text,
+            created: date.getTime(),
         },
     };
 }
 
 export function removeTodo(id) {
-    console.log('removeTodo', id)
     return {
         type: 'REMOVE_TODO',
         payload: id,

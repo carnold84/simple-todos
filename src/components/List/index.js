@@ -49,6 +49,10 @@ const ListMessage = styled.li`
 const List = (props) => {
     const { todos, toggleTodo, addTodo, removeTodo } = props;
     
+    const items = todos.sort((a, b) => {
+        return a.get('isDone') - b.get('isDone');
+    });
+    
     let textInput = undefined;
 
     const onSubmit = (event) => {
@@ -81,7 +85,7 @@ const List = (props) => {
     let content = undefined;
     
     if (todos.size > 0) {
-        content = todos.map((todo) => {
+        content = items.map((todo) => {
             return (
                 <li key={todo.get('id')}>
                     <Todo todo={todo.toJS()}
