@@ -1,5 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
 import styled from 'styled-components';
+import ClickOutside from '../ClickOutside';
 import checkboxIcon from '../../images/check_box.svg';
 import checkboxCheckedIcon from '../../images/check_box_checked.svg';
 import deleteIcon from '../../images/delete.svg';
@@ -8,33 +10,12 @@ const TodoContainer = styled.div`
     height: 40px;
     margin: 0 0 5px;
     border: #f1f1f1 solid 1px;
-    align-items: center;
+    align-items: stretch;
     display: flex;
-
-    strike {
-        color: #cccccc;
-    }
 `;
 
 const Checkbox = styled.span`
-    padding: 0 0 0 10px;
-    opacity: 0.5;
-    cursor: pointer;
-    display: flex;
-`;
-
-const Text = styled.span`
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    color: #666666;
     padding: 0 10px;
-    flex-grow: 1;
-`;
-
-const RemoveButton = styled.button`
-    padding: 0 10px;
-    border: none;
-    background-color: transparent;
     opacity: 0.25;
     cursor: pointer;
     display: flex;
@@ -44,30 +25,64 @@ const RemoveButton = styled.button`
     }
 `;
 
+const TextEdit = styled.input`
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #666666;
+    padding: 0 10px;
+    border: none;
+    flex-grow: 1;
+    display: flex;
+
+    .is-done & {
+        color: #cccccc;
+        text-decoration: line-through;
+    }
+`;
+
+const RemoveButton = styled.button`
+    padding: 0 10px;
+    border: none;
+    background-color: transparent;
+    opacity: 0.25;
+    cursor: pointer;
+    flex-grow: 0;
+    display: flex;
+
+    &:hover {
+        opacity: 0.5;
+    }
+`;
+
 const Todo = (props) => {
     
-    const { todo, onClick, onRemoveClick } = props;
+    let classes = classNames({ 'is-done': props.isDone });
+    let checkbox = props.isDone ? checkboxCheckedIcon : checkboxIcon;
     
-    let checkbox = checkboxIcon;
-    let text = (
-        <span>{todo.text}</span>
-    );
-
-    if(todo.isDone) {
-        checkbox = checkboxCheckedIcon;
-        text = (
-            <strike>{todo.text}</strike>
-        );
-    }
+    const onSubmit = (event) => {
+        
+        const isEnterKey = event.which === undefined || event.which === 13;
+        
+        if (isEnterKey) {
+            
+            const target = event.target;
+            props.onSave(props.id, target.value);
+            target.blur();
+        }
+    };
     
     return (
-        <TodoContainer>
-            <Checkbox onClick={onClick}>
-                <img src={checkbox} />
+        <TodoContainer className={classes}>
+            <Checkbox onClick={() => props.onClick(props.id)}>
+                <img src={checkbox} role="presentation" />
             </Checkbox>
-            <Text>{text}</Text>
-            <RemoveButton onClick={onRemoveClick}>
-                <img src={deleteIcon} />
+            <TextEdit
+                    onKeyDown={onSubmit}
+                    onBlur={onSubmit}
+                    defaultValue={props.text} />
+            <RemoveButton onClick={() => props.onRemoveClick(props.id)}>
+                <img src={deleteIcon} role="presentation" />
             </RemoveButton>
         </TodoContainer>
     );

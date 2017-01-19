@@ -20,6 +20,16 @@ export function removeTodo(id) {
     };
 }
 
+export function updateTodo(id, text) {
+    return {
+        type: 'UPDATE_TODO',
+        payload: {
+            id: id,
+            text: text,
+        },
+    };
+}
+
 export function toggleTodo(id) {
     return {
         type: 'TOGGLE_TODO',

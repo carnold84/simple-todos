@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Todo from '../Todo';
 import styled from 'styled-components';
+import _orderBy from 'lodash/orderBy';
 
 const Container = styled.section`
     width: 90%;
@@ -46,78 +47,89 @@ const ListMessage = styled.li`
     padding: 12px 16px;
 `;
 
-const List = (props) => {
-    const { todos, toggleTodo, addTodo, removeTodo } = props;
+class List extends Component {
     
-    const items = todos.sort((a, b) => {
-        return a.get('isDone') - b.get('isDone');
-    });
-    
-    let textInput = undefined;
+    constructor() {
+        super();
+        
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onEditSubmit = this.onEditSubmit.bind(this);
+        this.onToggleClick = this.onToggleClick.bind(this);
+        this.onRemoveClick = this.onRemoveClick.bind(this);
+        
+        this.textInput = undefined;
+    }
 
-    const onSubmit = (event) => {
-        const input = textInput;
+    onSubmit(event) {
+        const input = this.textInput;
         const text = input.value;
         const isEnterKey = (event.which === 13);
         const isLongEnough = text.length > 0;
 
         if(isEnterKey && isLongEnough) {
           input.value = '';
-          addTodo(text);
+          this.props.addTodo(text);
         }
-    };
-
-    const onClickSubmit = (event) => {
-        const input = textInput;
-        const text = input.value;
-        input.value = '';
-        addTodo(text);
-    };
-
-    const toggleClick = (id) => {
-        toggleTodo(id);
-    };
-    
-    const removeClick = (id) => {
-        removeTodo(id);
-    };
-    
-    let content = undefined;
-    
-    if (todos.size > 0) {
-        content = items.map((todo) => {
-            return (
-                <li key={todo.get('id')}>
-                    <Todo todo={todo.toJS()}
-                        onClick={() => toggleClick(todo.get('id'))}
-                        onRemoveClick={() => removeClick(todo.get('id'))} />
-                </li>
-            );
-        });
-    } else {
-        content = (
-            <ListMessage>No tasks</ListMessage>
-        );
     }
 
-    return (
-        <Container>
+    onEditSubmit(id, text) {
+        this.props.updateTodo(id, text);
+    }
 
-            <FormContainer>
-        
-                <input type='text'
-                    placeholder='Add task...'
-                    ref={(el) => textInput = el}
-                    onKeyDown={onSubmit} />
-                    
-            </FormContainer>
+    onToggleClick(id, text) {
+        this.props.toggleTodo(id, text);
+    }
 
-            <ListContainer>
-                {content}
-            </ListContainer>
+    onRemoveClick(id, text) {
+        this.props.removeTodo(id, text);
+    }
+    
+    render() {
+    
+        const { todos } = this.props;
 
-        </Container>
-    );
+        const items = _orderBy(todos.toJS(), ['isDone', 'created'], ['asc', 'desc']);
+
+        let content = undefined;
+
+        if (todos.size > 0) {
+            content = items.map((todo) => {
+                return (
+                    <li key={todo.id}>
+                        <Todo id={todo.id}
+                            text={todo.text}
+                            isDone={todo.isDone}
+                            onClick={this.onToggleClick}
+                            onRemoveClick={this.onRemoveClick}
+                            onSave={this.onEditSubmit} />
+                    </li>
+                );
+            });
+        } else {
+            content = (
+                <ListMessage>No tasks</ListMessage>
+            );
+        }
+
+        return (
+            <Container>
+
+                <FormContainer>
+
+                    <input type='text'
+                        placeholder='Add task...'
+                        ref={(el) => this.textInput = el}
+                        onKeyDown={this.onSubmit} />
+
+                </FormContainer>
+
+                <ListContainer>
+                    {content}
+                </ListContainer>
+
+            </Container>
+        );
+    }
 }
 
 export default List;

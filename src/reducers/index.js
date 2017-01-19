@@ -17,6 +17,18 @@ const reducer = (todos = init, action) => {
                 }
             });
             return todos.delete(index);
+        
+        case 'UPDATE_TODO':
+            let id = action.payload.id;
+            let text = action.payload.text;
+            
+            return todos.update(
+                todos.findIndex((todo) => { 
+                    return todo.get('id') === id; 
+                }), (todo) => {
+                    return todo.set('text', text);
+                }
+            ); 
             
         case 'TOGGLE_TODO':
             return todos.map(todo => {
