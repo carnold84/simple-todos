@@ -80,8 +80,8 @@ class List extends Component {
         this.props.toggleTodo(id, text);
     }
 
-    onRemoveClick(id, text) {
-        this.props.removeTodo(id, text);
+    onRemoveClick(id) {
+        this.props.removeTodo(id);
     }
     
     render() {

@@ -8,10 +8,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTodo: text => dispatch(addTodo(text)),
-        removeTodo: text => dispatch(removeTodo(id)),
+        addTodo: (text) => dispatch(addTodo(text)),
+        removeTodo: (id) => dispatch(removeTodo(id)),
         updateTodo: (id, text) => dispatch(updateTodo(id, text)),
-        toggleTodo: id => dispatch(toggleTodo(id))
+        toggleTodo: (id) => dispatch(toggleTodo(id)),
     };
 };
 

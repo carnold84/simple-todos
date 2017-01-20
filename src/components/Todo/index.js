@@ -39,6 +39,10 @@ const TextEdit = styled.input`
         color: #cccccc;
         text-decoration: line-through;
     }
+
+    &:focus {
+        outline: none;
+    }
 `;
 
 const RemoveButton = styled.button`
