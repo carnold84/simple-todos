@@ -1,51 +1,8 @@
 import React, { Component } from 'react';
-import Todo from '../Todo';
-import styled from 'styled-components';
+import { SortableContainer, arrayMove } from 'react-sortable-hoc';
 import _orderBy from 'lodash/orderBy';
-
-const Container = styled.section`
-    width: 90%;
-    max-width: 800px;
-    flex-direction: column;
-    display: flex;
-`;
-
-const FormContainer = styled.section`
-    position: relative;
-    padding: 20px 0;
-    display: flex;
-
-    input {
-        width: 100%;
-        font-family: 'Roboto', sans-serif;
-        font-size: 14px;
-        padding: 12px 16px;
-        border: none;
-        box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
-        outline: none;
-        display: flex;
-
-        &:focus {
-            border-color: #cccccc;
-        }
-    }
-`;
-
-const ListContainer = styled.ul`
-    padding: 0;
-    margin: 0 0 20px;
-    list-style: none;
-    flex-direction: column;
-    display: flex;
-`;
-
-const ListMessage = styled.li`
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    text-align: center;
-    color: #999999;
-    padding: 12px 16px;
-`;
+import SortableTodo from '../Todo';
+import { Container, FormContainer, ListContainer, ListMessage } from './styles';
 
 class List extends Component {
     
@@ -56,8 +13,11 @@ class List extends Component {
         this.onEditSubmit = this.onEditSubmit.bind(this);
         this.onToggleClick = this.onToggleClick.bind(this);
         this.onRemoveClick = this.onRemoveClick.bind(this);
+        this.onSortEnd = this.onSortEnd.bind(this);
         
         this.textInput = undefined;
+
+        this.items = undefined;
     }
 
     onSubmit(event) {
@@ -83,33 +43,17 @@ class List extends Component {
     onRemoveClick(id) {
         this.props.removeTodo(id);
     }
+
+    onSortEnd({oldIndex, newIndex}) {
+
+        let orderedItems = arrayMove(this.items, oldIndex, newIndex);
+
+        this.props.saveAll(orderedItems);
+    }
     
     render() {
-    
-        const { todos } = this.props;
 
-        const items = _orderBy(todos.toJS(), ['isDone', 'created'], ['asc', 'desc']);
-
-        let content = undefined;
-
-        if (todos.size > 0) {
-            content = items.map((todo) => {
-                return (
-                    <li key={todo.id}>
-                        <Todo id={todo.id}
-                            text={todo.text}
-                            isDone={todo.isDone}
-                            onClick={this.onToggleClick}
-                            onRemoveClick={this.onRemoveClick}
-                            onSave={this.onEditSubmit} />
-                    </li>
-                );
-            });
-        } else {
-            content = (
-                <ListMessage>No tasks</ListMessage>
-            );
-        }
+        this.items = _orderBy(this.props.todos.toJS(), ['isDone', 'order'], ['asc', 'asc']);
 
         return (
             <Container>
@@ -123,13 +67,48 @@ class List extends Component {
 
                 </FormContainer>
 
-                <ListContainer>
-                    {content}
-                </ListContainer>
+                <SortableList todos={this.items}
+                    onSortEnd={this.onSortEnd}
+                    onSubmit={this.onSubmit}
+                    onEditSubmit={this.onEditSubmit}
+                    onToggleClick={this.onToggleClick}
+                    onRemoveClick={this.onRemoveClick}
+                    useDragHandle={true} />
 
             </Container>
         );
     }
 }
+
+const SortableList = SortableContainer(({todos, onSubmit, onEditSubmit, onToggleClick, onRemoveClick}) => {
+
+    let content = undefined;
+
+    if (todos.length > 0) {
+
+        content = todos.map((todo, index) => {
+            return (
+                <SortableTodo id={todo.id}
+                    key={todo.id}
+                    index={index}
+                    text={todo.text}
+                    isDone={todo.isDone}
+                    onToggleClick={onToggleClick}
+                    onRemoveClick={onRemoveClick}
+                    onEditSubmit={onEditSubmit} />
+            );
+        });
+    } else {
+        content = (
+            <ListMessage>No tasks</ListMessage>
+        );
+    }
+
+	return (
+		<ListContainer>
+            {content}
+        </ListContainer>
+	);
+});
 
 export default List;

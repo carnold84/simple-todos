@@ -36,3 +36,10 @@ export function toggleTodo(id) {
         payload: id,
     };
 }
+
+export function saveAll(todos) {
+    return {
+        type: 'SAVE_ALL',
+        payload: todos,
+    };
+}

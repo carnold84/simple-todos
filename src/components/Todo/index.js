@@ -1,63 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-import styled from 'styled-components';
-import ClickOutside from '../ClickOutside';
+import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import checkboxIcon from '../../images/check_box.svg';
 import checkboxCheckedIcon from '../../images/check_box_checked.svg';
 import deleteIcon from '../../images/delete.svg';
-
-const TodoContainer = styled.div`
-    height: 40px;
-    margin: 0 0 5px;
-    border: #f1f1f1 solid 1px;
-    align-items: stretch;
-    display: flex;
-`;
-
-const Checkbox = styled.span`
-    padding: 0 10px;
-    opacity: 0.25;
-    cursor: pointer;
-    display: flex;
-
-    &:hover {
-        opacity: 0.5;
-    }
-`;
-
-const TextEdit = styled.input`
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    color: #666666;
-    padding: 0 10px;
-    border: none;
-    flex-grow: 1;
-    display: flex;
-
-    .is-done & {
-        color: #cccccc;
-        text-decoration: line-through;
-    }
-
-    &:focus {
-        outline: none;
-    }
-`;
-
-const RemoveButton = styled.button`
-    padding: 0 10px;
-    border: none;
-    background-color: transparent;
-    opacity: 0.25;
-    cursor: pointer;
-    flex-grow: 0;
-    display: flex;
-
-    &:hover {
-        opacity: 0.5;
-    }
-`;
+import reorder from '../../images/reorder.svg';
+import { TodoContainer, Reorder, Checkbox, TextEdit, RemoveButton } from './styles';
 
 const Todo = (props) => {
     
@@ -75,9 +23,18 @@ const Todo = (props) => {
             target.blur();
         }
     };
+
+    const DragHandle = SortableHandle(() => {
+        return (
+            <Reorder>
+                <img src={reorder} role="presentation" />
+            </Reorder>
+        );
+    });
     
     return (
         <TodoContainer className={classes}>
+            <DragHandle />
             <Checkbox onClick={() => props.onClick(props.id)}>
                 <img src={checkbox} role="presentation" />
             </Checkbox>
@@ -92,4 +49,17 @@ const Todo = (props) => {
     );
 }
 
-export default Todo;
+const SortableTodo = SortableElement(({id, isDone, text, onToggleClick, onRemoveClick, onEditSubmit}) => {
+
+    return (
+        <Todo id={id}
+            key={id}
+            text={text}
+            isDone={isDone}
+            onClick={onToggleClick}
+            onRemoveClick={onRemoveClick}
+            onSave={onEditSubmit} />
+    );
+});
+
+export default SortableTodo;
