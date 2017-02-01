@@ -18,7 +18,7 @@ let persistedState = List(todos);
 const store = createStore(reducer, persistedState);
 
 store.subscribe(()=>{
-  localStorage.setItem('todos', JSON.stringify(store.getState()))
+    localStorage.setItem('todos', JSON.stringify(store.getState()))
 });
 
 render(

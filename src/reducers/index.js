@@ -28,7 +28,7 @@ const reducer = (todos = init, action) => {
                 }), (todo) => {
                     return todo.set('text', text);
                 }
-            ); 
+            );
             
         case 'TOGGLE_TODO':
             return todos.map(todo => {
@@ -38,6 +38,13 @@ const reducer = (todos = init, action) => {
                     return todo;
                 }
             });
+            
+        case 'SAVE_ALL':
+            let ordered = action.payload.map((todo, i) => {
+                todo.order = i;
+                return Map(todo);
+            });
+            return List(ordered);
             
         default:
             return todos;
