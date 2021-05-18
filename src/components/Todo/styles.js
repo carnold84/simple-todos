@@ -31,21 +31,6 @@ export const Icon = styled.span`
   }
 `;
 
-export const Checkbox = styled.span`
-  padding: 0 10px 0 0;
-  opacity: 0.25;
-  cursor: pointer;
-  display: flex;
-
-  svg {
-    fill: #000000;
-  }
-
-  &:hover {
-    opacity: 0.5;
-  }
-`;
-
 export const TextEdit = styled.input`
   background-color: #ffffff;
   height: 100%;
@@ -57,6 +42,8 @@ export const TextEdit = styled.input`
   border: none;
   flex-grow: 1;
   display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   .is-done & {
     color: #cccccc;
@@ -71,19 +58,5 @@ export const TextEdit = styled.input`
   &:focus {
     color: #9c22c3;
     outline: none;
-  }
-`;
-
-export const RemoveButton = styled.button`
-  padding: 0 10px;
-  border: none;
-  background-color: transparent;
-  opacity: 0.15;
-  cursor: pointer;
-  flex-grow: 0;
-  display: flex;
-
-  &:hover {
-    opacity: 0.5;
   }
 `;

@@ -1,13 +1,6 @@
 import React from "react";
 import { SortableElement, SortableHandle } from "react-sortable-hoc";
-import deleteIcon from "../../images/delete.svg";
-import {
-  TodoContainer,
-  Icon,
-  Checkbox,
-  TextEdit,
-  RemoveButton,
-} from "./styles";
+import { TodoContainer, Icon, TextEdit } from "./styles";
 
 const Todo = (props) => {
   let classes = [];
