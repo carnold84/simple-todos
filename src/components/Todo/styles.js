@@ -1,18 +1,27 @@
 import styled from "styled-components";
 
 export const TodoContainer = styled.div`
-  height: 40px;
+  height: 44px;
   margin: 0 0 5px;
   border: #f1f1f1 solid 1px;
+  border-radius: 22px;
   align-items: stretch;
   display: flex;
+  padding: 0 5px;
 `;
 
-export const Reorder = styled.span`
+export const Icon = styled.span`
+  align-items: center;
   padding: 0 10px 0 10px;
-  opacity: 0.15;
-  cursor: grab;
+  opacity: 0.2;
+  cursor: pointer;
   display: flex;
+
+  svg {
+    fill: #000000;
+    height: 22px;
+    width: 22px;
+  }
 
   &:hover {
     opacity: 0.5;
@@ -25,6 +34,10 @@ export const Checkbox = styled.span`
   cursor: pointer;
   display: flex;
 
+  svg {
+    fill: #000000;
+  }
+
   &:hover {
     opacity: 0.5;
   }
@@ -32,10 +45,11 @@ export const Checkbox = styled.span`
 
 export const TextEdit = styled.input`
   height: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 14px;
+  font-size: 500;
   color: #666666;
-  padding: 0 10px;
+  padding: 0 10px 0 7px;
   border: none;
   flex-grow: 1;
   display: flex;

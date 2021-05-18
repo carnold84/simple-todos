@@ -7,24 +7,77 @@ export const Container = styled.section`
   display: flex;
 `;
 
-export const FormContainer = styled.section`
+export const FormContainer = styled.form`
+  margin: 20px 0;
   position: relative;
-  padding: 20px 0;
   display: flex;
 
   input {
-    width: 100%;
-    font-family: "Roboto", sans-serif;
+    align-items: center;
+    background-color: #f9f9f9;
+    font-family: "Quicksand", sans-serif;
     font-size: 14px;
-    padding: 12px 16px;
-    border: none;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-      0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    font-size: 500;
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid #eeeeee;
+    border-radius: 20px;
     outline: none;
     display: flex;
+    width: 100%;
+    z-index: 0;
 
     &:focus {
       border-color: #cccccc;
+    }
+  }
+
+  button {
+    align-items: center;
+    border: 2px solid #9c22c3;
+    border-radius: 15px;
+    color: #9c22c3;
+    cursor: pointer;
+    display: flex;
+    font-family: "Quicksand", sans-serif;
+    font-size: 14px;
+    font-size: 500;
+    height: 30px;
+    justify-content: center;
+    padding: 0 3px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 1;
+
+    svg {
+      fill: #9c22c3;
+      margin: 0;
+    }
+
+    span {
+      display: none;
+    }
+
+    &:hover {
+      background-color: #9c22c3;
+      color: #ffffff;
+
+      svg {
+        fill: #ffffff;
+      }
+    }
+
+    @media (min-width: 768px) {
+      padding: 0 10px 0 5px;
+
+      svg {
+        margin: 0 2px 0 0;
+      }
+
+      span {
+        display: inline;
+      }
     }
   }
 `;
@@ -38,8 +91,9 @@ export const ListContainer = styled.div`
 `;
 
 export const ListMessage = styled.div`
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 15px;
+  font-size: 500;
   text-align: center;
   color: #999999;
   padding: 12px 16px;

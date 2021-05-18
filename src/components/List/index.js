@@ -20,15 +20,13 @@ class List extends Component {
   }
 
   onSubmit(event) {
+    event.preventDefault();
+
     const input = this.textInput;
     const text = input.value;
-    const isEnterKey = event.which === 13;
-    const isLongEnough = text.length > 0;
 
-    if (isEnterKey && isLongEnough) {
-      input.value = "";
-      this.props.addTodo(text);
-    }
+    input.value = "";
+    this.props.addTodo(text);
   }
 
   onEditSubmit(id, text) {
@@ -58,13 +56,24 @@ class List extends Component {
 
     return (
       <Container>
-        <FormContainer>
+        <FormContainer onSubmit={this.onSubmit}>
           <input
             type="text"
             placeholder="Add task..."
             ref={(el) => (this.textInput = el)}
-            onKeyDown={this.onSubmit}
           />
+          <button>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M9.52495 17.657L4.57495 12.707L5.98895 11.293L9.64295 14.943L9.52495 14.828L18.01 6.343L19.424 7.757L10.939 16.243L9.52595 17.656L9.52495 17.657Z" />
+            </svg>
+            <span>Create</span>
+          </button>
         </FormContainer>
 
         <SortableList
