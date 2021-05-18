@@ -20,7 +20,7 @@ export const FormContainer = styled.form`
     font-size: 500;
     color: #222222;
     height: 40px;
-    padding: 0 16px;
+    padding: 0 46px 0 16px;
     border: 1px solid #eeeeee;
     border-radius: 20px;
     outline: none;
@@ -46,7 +46,7 @@ export const FormContainer = styled.form`
     font-size: 500;
     height: 30px;
     justify-content: center;
-    padding: 0 3px;
+    padding: 0 3px 0 4px;
     position: absolute;
     right: 5px;
     top: 5px;
@@ -55,10 +55,6 @@ export const FormContainer = styled.form`
     svg {
       fill: #666666;
       margin: 0;
-    }
-
-    span {
-      display: none;
     }
 
     &:hover {
@@ -72,14 +68,8 @@ export const FormContainer = styled.form`
     }
 
     @media (min-width: 768px) {
-      padding: 0 10px 0 5px;
-
       svg {
         margin: 0 2px 0 0;
-      }
-
-      span {
-        display: inline;
       }
     }
   }

@@ -4,6 +4,8 @@ Simple todo app built with React, Redux and Immutable JS.
 
 Is designed to be used offline, but can be easily updated to save to an api.
 
+[View Demo](https://carnold84.github.io/simple-todos/)
+
 ## Dev
 
 The main libraries used are:
@@ -32,9 +34,7 @@ By default the build folder is renamed from the default of `build` to `docs`. Th
 ```json
 ...
 "scripts": {
-  ...
   "build": "cross-env react-scripts build && mv build docs"
-  ...
 },
 ...
 ```

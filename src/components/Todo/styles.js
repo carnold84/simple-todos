@@ -50,12 +50,9 @@ export const TextEdit = styled.input`
     text-decoration: line-through;
   }
 
-  &:hover {
-    background-color: #fdf8ff;
-    color: #9c22c3;
-  }
-
+  &:hover,
   &:focus {
+    background-color: #fdf8ff;
     color: #9c22c3;
     outline: none;
   }
