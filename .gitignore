@@ -49,3 +49,5 @@ Temporary Items
 # Directories
 node_modules
 build
+
+.env
