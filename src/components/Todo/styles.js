@@ -1,65 +1,62 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TodoContainer = styled.div`
-    height: 40px;
-    margin: 0 0 5px;
-    border: #f1f1f1 solid 1px;
-    align-items: stretch;
-    display: flex;
+  height: 44px;
+  margin: 0 0 5px;
+  border: #f1f1f1 solid 1px;
+  border-radius: 22px;
+  align-items: stretch;
+  display: flex;
+  padding: 0 5px;
 `;
 
-export const Reorder = styled.span`
-    padding: 0 10px 0 10px;
-    opacity: 0.15;
-    cursor: grab;
-    display: flex;
+export const Icon = styled.span`
+  align-items: center;
+  padding: 0 10px 0 10px;
+  cursor: pointer;
+  display: flex;
 
-    &:hover {
-        opacity: 0.5;
+  svg {
+    fill: #cccccc;
+    height: 22px;
+    width: 22px;
+  }
+
+  &:hover {
+    opacity: 1;
+
+    svg {
+      fill: #9c22c3;
     }
-`;
-
-export const Checkbox = styled.span`
-    padding: 0 10px 0 0;
-    opacity: 0.25;
-    cursor: pointer;
-    display: flex;
-
-    &:hover {
-        opacity: 0.5;
-    }
+  }
 `;
 
 export const TextEdit = styled.input`
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    color: #666666;
-    padding: 0 10px;
-    border: none;
-    flex-grow: 1;
-    display: flex;
+  background-color: #ffffff;
+  height: 100%;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-size: 500;
+  color: #666666;
+  padding: 0 10px 0 10px;
+  border: none;
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-    .is-done & {
-        color: #cccccc;
-        text-decoration: line-through;
-    }
+  .is-done & {
+    color: #cccccc;
+    text-decoration: line-through;
+  }
 
-    &:focus {
-        outline: none;
-    }
-`;
+  &:hover {
+    background-color: #fdf8ff;
+    color: #9c22c3;
+  }
 
-export const RemoveButton = styled.button`
-    padding: 0 10px;
-    border: none;
-    background-color: transparent;
-    opacity: 0.15;
-    cursor: pointer;
-    flex-grow: 0;
-    display: flex;
-
-    &:hover {
-        opacity: 0.5;
-    }
+  &:focus {
+    color: #9c22c3;
+    outline: none;
+  }
 `;

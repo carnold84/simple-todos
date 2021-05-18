@@ -2,28 +2,38 @@
   "name": "react-todo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://meltplastic.net/todos",
-  "devDependencies": {},
+  "homepage": "./",
   "dependencies": {
-    "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
-    "lodash": "^4.17.4",
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-    "react-redux": "^5.0.1",
-    "react-scripts": "0.4.1",
-    "react-sortable-hoc": "^0.4.12",
-    "redux": "^3.6.0",
-    "styled-components": "^1.2.1",
-    "uuid": "^3.0.1"
+    "immutable": "^3.8.2",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-scripts": "^4.0.3",
+    "react-sortable-hoc": "^2.0.0",
+    "redux": "^4.1.0",
+    "styled-components": "^5.3.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env react-scripts build && mv build docs",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "./node_modules/react-scripts/config/eslint.js"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
