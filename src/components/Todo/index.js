@@ -36,10 +36,7 @@ const Todo = (props) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M21 18H3V16H21V18ZM21 13H3V11H21V13ZM21 8H3V6H21V8Z"
-            fill="#2E3A59"
-          />
+          <path d="M21 18H3V16H21V18ZM21 13H3V11H21V13ZM21 8H3V6H21V8Z" />
         </svg>
       </Icon>
     );
@@ -50,7 +47,7 @@ const Todo = (props) => {
       <DragHandle />
       <Icon
         onClick={() => props.onClick(props.id)}
-        style={{ padding: "0 0 0 5px" }}
+        style={{ padding: "0 5px 0 5px" }}
       >
         {props.isDone ? (
           <svg
@@ -87,10 +84,7 @@ const Todo = (props) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M17 22H7C5.89543 22 5 21.1046 5 20V7H3V5H7V4C7 2.89543 7.89543 2 9 2H15C16.1046 2 17 2.89543 17 4V5H21V7H19V20C19 21.1046 18.1046 22 17 22ZM7 7V20H17V7H7ZM9 4V5H15V4H9Z"
-            fill="#2E3A59"
-          />
+          <path d="M17 22H7C5.89543 22 5 21.1046 5 20V7H3V5H7V4C7 2.89543 7.89543 2 9 2H15C16.1046 2 17 2.89543 17 4V5H21V7H19V20C19 21.1046 18.1046 22 17 22ZM7 7V20H17V7H7ZM9 4V5H15V4H9Z" />
         </svg>
       </Icon>
     </TodoContainer>

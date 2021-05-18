@@ -18,6 +18,7 @@ export const FormContainer = styled.form`
     font-family: "Quicksand", sans-serif;
     font-size: 14px;
     font-size: 500;
+    color: #222222;
     height: 40px;
     padding: 0 16px;
     border: 1px solid #eeeeee;
@@ -34,9 +35,10 @@ export const FormContainer = styled.form`
 
   button {
     align-items: center;
-    border: 2px solid #9c22c3;
+    background-color: #f9f9f9;
+    border: 2px solid #eeeeee;
     border-radius: 15px;
-    color: #9c22c3;
+    color: #666666;
     cursor: pointer;
     display: flex;
     font-family: "Quicksand", sans-serif;
@@ -51,7 +53,7 @@ export const FormContainer = styled.form`
     z-index: 1;
 
     svg {
-      fill: #9c22c3;
+      fill: #666666;
       margin: 0;
     }
 
@@ -61,6 +63,7 @@ export const FormContainer = styled.form`
 
     &:hover {
       background-color: #9c22c3;
+      border: 2px solid #9c22c3;
       color: #ffffff;
 
       svg {
