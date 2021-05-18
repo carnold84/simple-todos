@@ -62,7 +62,7 @@ class List extends Component {
             placeholder="Add task..."
             ref={(el) => (this.textInput = el)}
           />
-          <button>
+          <button aria-label="Add">
             <svg
               width="24"
               height="24"
