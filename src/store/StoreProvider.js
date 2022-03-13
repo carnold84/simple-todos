@@ -9,6 +9,10 @@ import {
 
 const StoreContext = createContext();
 
+const saveState = (state) => {
+  localStorage.setItem('simple-todos', JSON.stringify(state));
+};
+
 // changed the state model and storage key so check for old todos first
 let legacyTodos = localStorage.getItem('todos')
   ? JSON.parse(localStorage.getItem('todos'))
@@ -28,10 +32,6 @@ let initialState = data
 if (data === null) {
   saveState(initialState);
 }
-
-const saveState = (state) => {
-  localStorage.setItem('simple-todos', JSON.stringify(state));
-};
 
 initialState.todos = [...legacyTodos, ...initialState.todos];
 
