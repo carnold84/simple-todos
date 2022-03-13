@@ -51,7 +51,7 @@ const reducer = (state, action) => {
       nextState = {
         ...state,
         todos: state.todos.filter(({ id }) => {
-          return id === action.payload;
+          return id !== action.payload;
         }),
       };
       saveState(nextState);
@@ -69,6 +69,7 @@ const reducer = (state, action) => {
               text,
             };
           }
+          return todo;
         }),
       };
       saveState(nextState);
@@ -76,17 +77,20 @@ const reducer = (state, action) => {
       return nextState;
 
     case 'TOGGLE_TODO':
+      console.log('TOGGLE_TODO', action.payload);
       nextState = {
         ...state,
-        todos: state.todos.map(({ id, isDone }) => {
-          if (id === action.payload) {
+        todos: state.todos.map((todo) => {
+          if (todo.id === action.payload) {
             return {
               ...todo,
-              isDone: !isDone,
+              isDone: !todo.isDone,
             };
           }
+          return todo;
         }),
       };
+      console.log('TOGGLE_TODO', nextState);
       saveState(nextState);
       return nextState;
 

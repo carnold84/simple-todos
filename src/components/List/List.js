@@ -60,11 +60,11 @@ const List = ({
       </FormContainer>
 
       <SortableList
-        todos={items}
-        onSortEnd={onSortEnd}
         onEditSubmit={onEditSubmit}
-        onToggleClick={onToggleClick}
         onRemoveClick={onRemoveClick}
+        onSortEnd={onSortEnd}
+        onToggleClick={onToggleClick}
+        todos={items}
         useDragHandle={true}
       />
     </Container>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TodoContainer = styled.div`
   height: 44px;
@@ -18,8 +18,8 @@ export const Icon = styled.span`
 
   svg {
     fill: #cccccc;
-    height: 22px;
-    width: 22px;
+    height: 20px;
+    width: 20px;
   }
 
   &:hover {
@@ -34,7 +34,7 @@ export const Icon = styled.span`
 export const TextEdit = styled.input`
   background-color: #ffffff;
   height: 100%;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 14px;
   font-size: 500;
   color: #666666;
