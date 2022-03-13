@@ -28,12 +28,12 @@ let initialState = data
       todos: [],
     };
 
+initialState.todos = [...legacyTodos, ...initialState.todos];
+
 // no data exists so save initial
 if (data === null) {
   saveState(initialState);
 }
-
-initialState.todos = [...legacyTodos, ...initialState.todos];
 
 const reducer = (state, action) => {
   let nextState;
