@@ -77,7 +77,6 @@ const reducer = (state, action) => {
       return nextState;
 
     case 'TOGGLE_TODO':
-      console.log('TOGGLE_TODO', action.payload);
       nextState = {
         ...state,
         todos: state.todos.map((todo) => {
@@ -90,7 +89,6 @@ const reducer = (state, action) => {
           return todo;
         }),
       };
-      console.log('TOGGLE_TODO', nextState);
       saveState(nextState);
       return nextState;
 
