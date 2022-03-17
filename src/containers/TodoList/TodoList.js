@@ -1,10 +1,51 @@
+import React from 'react';
+import _orderBy from 'lodash/orderBy';
+import { Container } from './styles';
 import List from '../../components/List';
+import AddTodoForm from '../../components/AddTodoForm/AddTodoForm';
 import { useStore } from '../../store/StoreProvider';
+import arrayMove from '../../utils/arrayMove';
 
 const TodoList = () => {
-  const store = useStore();
+  const { addTodo, removeTodo, saveAll, toggleTodo, todos, updateTodo } =
+    useStore();
 
-  return <List {...store} />;
+  const onSubmit = (text) => {
+    addTodo(text);
+  };
+
+  const onEditSubmit = (id, text) => {
+    updateTodo(id, text);
+  };
+
+  const onToggleClick = (id, text) => {
+    toggleTodo(id, text);
+  };
+
+  const onRemoveClick = (id) => {
+    removeTodo(id);
+  };
+
+  const items = _orderBy(todos, ['isDone', 'order'], ['asc', 'asc']);
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    let orderedItems = arrayMove(items, oldIndex, newIndex);
+
+    saveAll(orderedItems);
+  };
+
+  return (
+    <Container>
+      <AddTodoForm onSubmit={onSubmit} />
+      <List
+        onEditSubmit={onEditSubmit}
+        onRemoveClick={onRemoveClick}
+        onSortEnd={onSortEnd}
+        onToggleClick={onToggleClick}
+        todos={items}
+      />
+    </Container>
+  );
 };
 
 export default TodoList;

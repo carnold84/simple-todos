@@ -1,0 +1,69 @@
+import styled from 'styled-components';
+
+export const Container = styled.form`
+  margin: 20px 0;
+  position: relative;
+  display: flex;
+
+  input {
+    align-items: center;
+    background-color: #f9f9f9;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-size: 500;
+    color: #222222;
+    height: 40px;
+    padding: 0 46px 0 16px;
+    border: 1px solid #eeeeee;
+    border-radius: 20px;
+    outline: none;
+    display: flex;
+    width: 100%;
+    z-index: 0;
+
+    &:focus {
+      border-color: #cccccc;
+    }
+  }
+
+  button {
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 2px solid #eeeeee;
+    border-radius: 15px;
+    color: #666666;
+    cursor: pointer;
+    display: flex;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-size: 500;
+    height: 30px;
+    justify-content: center;
+    padding: 0 3px 0 4px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 1;
+
+    svg {
+      fill: #666666;
+      margin: 0;
+    }
+
+    &:hover {
+      background-color: #9c22c3;
+      border: 2px solid #9c22c3;
+      color: #ffffff;
+
+      svg {
+        fill: #ffffff;
+      }
+    }
+
+    @media (min-width: 768px) {
+      svg {
+        margin: 0 2px 0 0;
+      }
+    }
+  }
+`;
