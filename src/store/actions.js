@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export function addTodo(text) {
+export const addTodo = (text) => {
   const date = new Date();
   return {
     type: 'ADD_TODO',
@@ -11,16 +11,16 @@ export function addTodo(text) {
       created: date.getTime(),
     },
   };
-}
+};
 
-export function removeTodo(id) {
+export const removeTodo = (id) => {
   return {
     type: 'REMOVE_TODO',
     payload: id,
   };
-}
+};
 
-export function updateTodo(id, text) {
+export const updateTodo = (id, text) => {
   return {
     type: 'UPDATE_TODO',
     payload: {
@@ -28,24 +28,24 @@ export function updateTodo(id, text) {
       text: text,
     },
   };
-}
+};
 
-export function toggleTheme() {
+export const toggleTheme = () => {
   return {
     type: 'TOGGLE_THEME',
   };
-}
+};
 
-export function toggleTodo(id) {
+export const toggleTodo = (id) => {
   return {
     type: 'TOGGLE_TODO',
     payload: id,
   };
-}
+};
 
-export function saveAll(todos) {
+export const saveAll = (todos) => {
   return {
     type: 'SAVE_ALL',
     payload: todos,
   };
-}
+};
