@@ -117,6 +117,7 @@ export const useStore = () => {
     updateTodo: (id, text) => dispatch(updateTodo(id, text)),
     toggleTodo: (id) => dispatch(toggleTodo(id)),
     saveAll: (todos) => dispatch(saveAll(todos)),
+    theme: state.theme,
     todos: state.todos,
   };
 };

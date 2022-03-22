@@ -1,6 +1,6 @@
 import React from 'react';
 import _orderBy from 'lodash/orderBy';
-import { Container } from './styles';
+import { Container, Content } from './styles';
 import List from '../../components/List';
 import AddTodoForm from '../../components/AddTodoForm/AddTodoForm';
 import { useStore } from '../../store/StoreProvider';
@@ -36,14 +36,16 @@ const TodoList = () => {
 
   return (
     <Container>
-      <AddTodoForm onSubmit={onSubmit} />
-      <List
-        onEditSubmit={onEditSubmit}
-        onRemoveClick={onRemoveClick}
-        onSortEnd={onSortEnd}
-        onToggleClick={onToggleClick}
-        todos={items}
-      />
+      <Content>
+        <AddTodoForm onSubmit={onSubmit} />
+        <List
+          onEditSubmit={onEditSubmit}
+          onRemoveClick={onRemoveClick}
+          onSortEnd={onSortEnd}
+          onToggleClick={onToggleClick}
+          todos={items}
+        />
+      </Content>
     </Container>
   );
 };

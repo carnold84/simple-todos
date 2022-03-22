@@ -1,42 +1,40 @@
 import styled from 'styled-components';
 
 export const Container = styled.form`
+  display: flex;
   margin: 20px 0;
   position: relative;
-  display: flex;
 
   input {
     align-items: center;
-    background-color: #f9f9f9;
+    background-color: ${({ theme }) => theme.input.bgColor};
+    border: 1px solid ${({ theme }) => theme.input.borderColor};
+    border-radius: 20px;
+    color: ${({ theme }) => theme.input.color};
+    display: flex;
     font-family: 'Quicksand', sans-serif;
     font-size: 14px;
-    font-size: 500;
-    color: #222222;
     height: 40px;
-    padding: 0 46px 0 16px;
-    border: 1px solid #eeeeee;
-    border-radius: 20px;
     outline: none;
-    display: flex;
+    padding: 0 46px 0 16px;
     width: 100%;
     z-index: 0;
 
     &:focus {
-      border-color: #cccccc;
+      border-color: ${({ theme }) => theme.input._focus.borderColor};
     }
   }
 
   button {
     align-items: center;
-    background-color: #f9f9f9;
-    border: 2px solid #eeeeee;
+    background-color: ${({ theme }) => theme.submitButton.bgColor};
+    border: 2px solid ${({ theme }) => theme.submitButton.borderColor};
     border-radius: 15px;
-    color: #666666;
+    color: ${({ theme }) => theme.submitButton.color};
     cursor: pointer;
     display: flex;
     font-family: 'Quicksand', sans-serif;
     font-size: 14px;
-    font-size: 500;
     height: 30px;
     justify-content: center;
     padding: 0 3px 0 4px;
@@ -46,17 +44,17 @@ export const Container = styled.form`
     z-index: 1;
 
     svg {
-      fill: #666666;
+      fill: ${({ theme }) => theme.submitButton.fill};
       margin: 0;
     }
 
     &:hover {
-      background-color: #9c22c3;
-      border: 2px solid #9c22c3;
+      background-color: ${({ theme }) => theme.submitButton._hover.bgColor};
+      border: 2px solid ${({ theme }) => theme.submitButton._hover.borderColor};
       color: #ffffff;
 
       svg {
-        fill: #ffffff;
+        fill: ${({ theme }) => theme.submitButton._hover.fill};
       }
     }
 
