@@ -27,8 +27,6 @@ const GlobalStyles = createGlobalStyle`
 const App = () => {
   const store = useStore();
 
-  console.log(store);
-
   return (
     <ThemeProvider theme={store.theme === 'light' ? darkTheme : lightTheme}>
       <GlobalStyles />

@@ -1,4 +1,10 @@
 const lightTheme = {
+  actionButton: {
+    color: '#999999',
+    _hover: {
+      color: '#9c22c3',
+    },
+  },
   bgColor: '#ffffff',
   input: {
     bgColor: '#f9f9f9',

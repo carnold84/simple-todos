@@ -1,4 +1,10 @@
 const darkTheme = {
+  actionButton: {
+    color: '#666666',
+    _hover: {
+      color: '#cccccc',
+    },
+  },
   bgColor: '#222222',
   input: {
     bgColor: '#292929',

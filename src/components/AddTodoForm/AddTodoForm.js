@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import _orderBy from 'lodash/orderBy';
 import { Container } from './styles';
 
-const AddTodoForm = ({ onSubmit: onFormSubmit }) => {
+const AddTodoForm = ({ onSubmit: onFormSubmit, ...rest }) => {
   const elInput = useRef(null);
 
   const onSubmit = (evt) => {
@@ -15,7 +15,7 @@ const AddTodoForm = ({ onSubmit: onFormSubmit }) => {
   };
 
   return (
-    <Container onSubmit={onSubmit}>
+    <Container onSubmit={onSubmit} {...rest}>
       <input type="text" placeholder="Add task..." ref={elInput} />
       <button aria-label="Add">
         <svg

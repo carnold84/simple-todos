@@ -2,19 +2,13 @@ import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { TodoContainer, Icon, TextEdit } from './styles';
 
-const Todo = (props) => {
-  let classes = [];
-
-  if (props.isDone) {
-    classes.push('is-done');
-  }
-
+const Todo = ({ id, isDone, onClick, onRemoveClick, onSave, text }) => {
   const onSubmit = (event) => {
     const isEnterKey = event.which === undefined || event.which === 13;
 
     if (isEnterKey) {
       const target = event.target;
-      props.onSave(props.id, target.value);
+      onSave(id, target.value);
       target.blur();
     }
   };
@@ -35,12 +29,10 @@ const Todo = (props) => {
   });
 
   return (
-    <TodoContainer className={classes.join(' ')}>
+    <TodoContainer>
       <DragHandle />
-      <Icon
-        onClick={() => props.onClick(props.id)}
-        style={{ padding: '0 5px 0 5px' }}>
-        {props.isDone ? (
+      <Icon onClick={() => onClick(id)} style={{ padding: '0 5px 0 5px' }}>
+        {isDone ? (
           <svg
             width="24"
             height="24"
@@ -61,11 +53,12 @@ const Todo = (props) => {
         )}
       </Icon>
       <TextEdit
+        isDone={isDone}
         onKeyDown={onSubmit}
         onBlur={onSubmit}
-        defaultValue={props.text}
+        defaultValue={text}
       />
-      <Icon onClick={() => props.onRemoveClick(props.id)}>
+      <Icon onClick={() => onRemoveClick(id)}>
         <svg
           width="24"
           height="24"

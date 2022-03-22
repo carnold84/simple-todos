@@ -35,7 +35,8 @@ export const Icon = styled.span`
 export const TextEdit = styled.input`
   background-color: ${({ theme }) => theme.todoItem.bgColor};
   border: none;
-  color: ${({ theme }) => theme.todoItem.color};
+  color: ${({ isDone, theme }) =>
+    isDone ? theme.todoItem._done.color : theme.todoItem.color};
   display: flex;
   height: 100%;
   flex-grow: 1;
@@ -43,12 +44,8 @@ export const TextEdit = styled.input`
   font-size: 14px;
   overflow: hidden;
   padding: 0 10px 0 10px;
+  text-decoration: ${({ isDone }) => (isDone ? 'line-through' : 'none')};
   text-overflow: ellipsis;
-
-  .is-done & {
-    color: ${({ theme }) => theme.todoItem._done.color};
-    text-decoration: line-through;
-  }
 
   &:hover,
   &:focus {

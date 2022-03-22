@@ -3,6 +3,7 @@ import {
   addTodo,
   removeTodo,
   saveAll,
+  toggleTheme,
   toggleTodo,
   updateTodo,
 } from './actions';
@@ -76,6 +77,14 @@ const reducer = (state, action) => {
 
       return nextState;
 
+    case 'TOGGLE_THEME':
+      nextState = {
+        ...state,
+        theme: state.theme === 'light' ? 'dark' : 'light',
+      };
+      saveState(nextState);
+      return nextState;
+
     case 'TOGGLE_TODO':
       nextState = {
         ...state,
@@ -115,6 +124,7 @@ export const useStore = () => {
     addTodo: (text) => dispatch(addTodo(text)),
     removeTodo: (id) => dispatch(removeTodo(id)),
     updateTodo: (id, text) => dispatch(updateTodo(id, text)),
+    toggleTheme: () => dispatch(toggleTheme()),
     toggleTodo: (id) => dispatch(toggleTodo(id)),
     saveAll: (todos) => dispatch(saveAll(todos)),
     theme: state.theme,

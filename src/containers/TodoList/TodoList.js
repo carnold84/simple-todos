@@ -1,14 +1,24 @@
 import React from 'react';
 import _orderBy from 'lodash/orderBy';
-import { Container, Content } from './styles';
+import { ActionButton, Container, Content, Header } from './styles';
 import List from '../../components/List';
 import AddTodoForm from '../../components/AddTodoForm/AddTodoForm';
 import { useStore } from '../../store/StoreProvider';
 import arrayMove from '../../utils/arrayMove';
+import LightBulbOnIcon from '../../icons/LightBulbOnIcon';
+import LightBulbOffIcon from '../../icons/LightBulbOffIcon';
 
 const TodoList = () => {
-  const { addTodo, removeTodo, saveAll, toggleTodo, todos, updateTodo } =
-    useStore();
+  const {
+    addTodo,
+    removeTodo,
+    saveAll,
+    theme,
+    toggleTheme,
+    toggleTodo,
+    todos,
+    updateTodo,
+  } = useStore();
 
   const onSubmit = (text) => {
     addTodo(text);
@@ -26,6 +36,10 @@ const TodoList = () => {
     removeTodo(id);
   };
 
+  const onToggleTheme = () => {
+    toggleTheme();
+  };
+
   const items = _orderBy(todos, ['isDone', 'order'], ['asc', 'asc']);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -37,7 +51,12 @@ const TodoList = () => {
   return (
     <Container>
       <Content>
-        <AddTodoForm onSubmit={onSubmit} />
+        <Header>
+          <AddTodoForm onSubmit={onSubmit} style={{ flexGrow: 1 }} />
+          <ActionButton onClick={onToggleTheme}>
+            {theme === 'dark' ? <LightBulbOnIcon /> : <LightBulbOffIcon />}
+          </ActionButton>
+        </Header>
         <List
           onEditSubmit={onEditSubmit}
           onRemoveClick={onRemoveClick}
