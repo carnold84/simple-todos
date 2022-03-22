@@ -1,9 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
-export function addTodo(text) {
+export const addTodo = (text) => {
   const date = new Date();
   return {
-    type: "ADD_TODO",
+    type: 'ADD_TODO',
     payload: {
       id: uuidv4(),
       isDone: false,
@@ -11,35 +11,41 @@ export function addTodo(text) {
       created: date.getTime(),
     },
   };
-}
+};
 
-export function removeTodo(id) {
+export const removeTodo = (id) => {
   return {
-    type: "REMOVE_TODO",
+    type: 'REMOVE_TODO',
     payload: id,
   };
-}
+};
 
-export function updateTodo(id, text) {
+export const updateTodo = (id, text) => {
   return {
-    type: "UPDATE_TODO",
+    type: 'UPDATE_TODO',
     payload: {
       id: id,
       text: text,
     },
   };
-}
+};
 
-export function toggleTodo(id) {
+export const toggleTheme = () => {
   return {
-    type: "TOGGLE_TODO",
+    type: 'TOGGLE_THEME',
+  };
+};
+
+export const toggleTodo = (id) => {
+  return {
+    type: 'TOGGLE_TODO',
     payload: id,
   };
-}
+};
 
-export function saveAll(todos) {
+export const saveAll = (todos) => {
   return {
-    type: "SAVE_ALL",
+    type: 'SAVE_ALL',
     payload: todos,
   };
-}
+};

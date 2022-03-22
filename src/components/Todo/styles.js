@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 
 export const TodoContainer = styled.div`
+  align-items: stretch;
+  background-color: ${({ theme }) => theme.todoItem.bgColor};
+  border: 1px solid ${({ theme }) => theme.todoItem.borderColor};
+  border-radius: 22px;
+  display: flex;
   height: 44px;
   margin: 0 0 5px;
-  border: #f1f1f1 solid 1px;
-  border-radius: 22px;
-  align-items: stretch;
-  display: flex;
   padding: 0 5px;
 `;
 
 export const Icon = styled.span`
   align-items: center;
-  padding: 0 10px 0 10px;
   cursor: pointer;
   display: flex;
+  padding: 0 10px 0 10px;
 
   svg {
-    fill: #cccccc;
+    fill: ${({ theme }) => theme.todoItem.icon.fill};
     height: 20px;
     width: 20px;
   }
@@ -26,34 +27,30 @@ export const Icon = styled.span`
     opacity: 1;
 
     svg {
-      fill: #9c22c3;
+      fill: ${({ theme }) => theme.todoItem.icon._hover.fill};
     }
   }
 `;
 
 export const TextEdit = styled.input`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.todoItem.bgColor};
+  border: none;
+  color: ${({ isDone, theme }) =>
+    isDone ? theme.todoItem._done.color : theme.todoItem.color};
+  display: flex;
   height: 100%;
+  flex-grow: 1;
   font-family: 'Quicksand', sans-serif;
   font-size: 14px;
-  font-size: 500;
-  color: #666666;
-  padding: 0 10px 0 10px;
-  border: none;
-  flex-grow: 1;
-  display: flex;
   overflow: hidden;
+  padding: 0 10px 0 10px;
+  text-decoration: ${({ isDone }) => (isDone ? 'line-through' : 'none')};
   text-overflow: ellipsis;
-
-  .is-done & {
-    color: #cccccc;
-    text-decoration: line-through;
-  }
 
   &:hover,
   &:focus {
-    background-color: #fdf8ff;
-    color: #9c22c3;
+    background-color: ${({ theme }) => theme.todoItem._hover.bgColor};
+    color: ${({ theme }) => theme.todoItem._hover.color};
     outline: none;
   }
 `;

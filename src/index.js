@@ -1,6 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
-import './index.css';
+import StoreProvider from './store/StoreProvider';
 
-render(<App />, document.getElementById('app'));
+render(
+  <StoreProvider>
+    <App />
+  </StoreProvider>,
+  document.getElementById('app')
+);
