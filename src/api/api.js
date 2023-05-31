@@ -19,6 +19,6 @@ const data = getData();
 if (data === null) {
   saveData({
     theme: 'light',
-    todos: [...legacyTodos, ...initialState.todos],
+    todos: [...legacyTodos],
   });
 }
